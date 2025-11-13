@@ -1,9 +1,6 @@
 {
   "version": 2,
   "name": "invitation-mariage-traditionnel",
-  "builds": [
-    { "src": "index.html", "use": "@vercel/static" }
-  ],
   "routes": [
     { "src": "/api/(.*)", "dest": "https://rsvp-mariage.onrender.com/api/$1" },
     { "src": "/(.*)", "dest": "/$1" }
