@@ -137,8 +137,8 @@ app.get('/api/rsvp/export-pdf', (req, res) => {
   }
 });
 
-const PORT = 3002; // Port forcé pour éviter les collisions avec un serveur existant
+const PORT = process.env.PORT || 3002; // Utilise le port fourni par la plateforme (Render), fallback local
 app.listen(PORT, () => {
-  console.log(`API RSVP en écoute sur http://localhost:${PORT}`);
+  console.log(`API RSVP en écoute sur port ${PORT}`);
   console.log('[API] Utilise base de données:', dbPath);
 });
