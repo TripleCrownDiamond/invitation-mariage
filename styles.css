@@ -99,7 +99,6 @@ p { margin: 0.4rem 0; }
   width: 12px; height: 12px;
   border-right: 2px solid #fff; border-bottom: 2px solid #fff;
   transform: rotate(45deg);
-  animation: heroChevronPulse 1.4s ease-in-out infinite;
 }
 .hero__down:hover { background: rgba(0,0,0,0.26); transform: translateX(-50%) translateY(-2px); }
 
@@ -227,8 +226,8 @@ p { margin: 0.4rem 0; }
 
 /* Mobile: réduire légèrement la taille des noms dans le hero */
 @media (max-width: 720px) {
-  .hero .title { font-size: 2.6rem; line-height: 1.1; }
-  .names .amp { font-size: 0.9em; }
+  .hero .title { font-size: 2.4rem; line-height: 1.08; }
+  .names .amp { font-size: 0.85em; }
   .hero__down { margin-top: 12px; }
 }
 
