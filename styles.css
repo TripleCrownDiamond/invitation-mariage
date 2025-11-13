@@ -222,12 +222,12 @@ p { margin: 0.4rem 0; }
 
 /* Ajustement mobile: flèche abaissée de 10px */
 @media (max-width: 720px) {
-  .hero__down { bottom: 2px; }
+  .hero__down { bottom: auto; position: static; transform: none; margin: 8px auto 0; display: inline-flex; }
 }
 
 /* Mobile: réduire légèrement la taille des noms dans le hero */
 @media (max-width: 720px) {
-  .hero .title { font-size: 3.2rem; }
+  .hero .title { font-size: 2.8rem; }
 }
 
 /* Modal */
