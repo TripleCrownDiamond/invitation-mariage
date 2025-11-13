@@ -227,7 +227,9 @@ p { margin: 0.4rem 0; }
 
 /* Mobile: réduire légèrement la taille des noms dans le hero */
 @media (max-width: 720px) {
-  .hero .title { font-size: 2.8rem; }
+  .hero .title { font-size: 2.6rem; line-height: 1.1; }
+  .names .amp { font-size: 0.9em; }
+  .hero__down { margin-top: 12px; }
 }
 
 /* Modal */
