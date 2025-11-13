@@ -8,10 +8,13 @@
   const loadListBtn = document.getElementById('loadRsvpList');
   const listContainer = document.getElementById('rsvpListContainer');
 
-  // Détection dynamique du port API (priorité au 3002 puis 3001 -> 3000)
+  // En production (Vercel/Render), on utilise les URLs relatives `/api/...`.
+  // En local (localhost), on détecte dynamiquement le port.
+  const IS_LOCAL = ['localhost','127.0.0.1'].includes(location.hostname);
   const SERVER_PORTS = [String(window.__RSVP_PORT || '3002'), '3001', '3000'];
   let resolvedPort = null;
   function resolveServerPort(){
+    if (!IS_LOCAL) return Promise.resolve(null);
     if (resolvedPort) return Promise.resolve(resolvedPort);
     // Essaie directement /api/rsvp pour éviter les serveurs non compatibles
     let idx = 0;
@@ -29,9 +32,15 @@
     return tryNext();
   }
   function apiUrl(path){
+    if (!IS_LOCAL) {
+      // Vercel réécrit /api vers Render; on reste en relatif pour éviter CORS/Mixed Content
+      const url = path;
+      console.log('[RSVP] API (prod) utilisée:', url);
+      return Promise.resolve(url);
+    }
     return resolveServerPort().then(port => {
       const url = `http://localhost:${port}${path}`;
-      console.log('[RSVP] API résolue:', url);
+      console.log('[RSVP] API (local) résolue:', url);
       return url;
     });
   }

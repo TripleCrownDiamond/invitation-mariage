@@ -20,10 +20,12 @@
   const countNon = document.getElementById('countNon');
   let currentRows = [];
 
-  // Même logique de détection de port que rsvp.js
+  // Production: utilise chemins relatifs `/api/...` ; Local: détecte le port.
+  const IS_LOCAL = ['localhost','127.0.0.1'].includes(location.hostname);
   const SERVER_PORTS = [String(window.__RSVP_PORT || '3002'), '3001', '3000'];
   let resolvedPort = null;
   function resolveServerPort(){
+    if (!IS_LOCAL) return Promise.resolve(null);
     if (resolvedPort) return Promise.resolve(resolvedPort);
     let idx = 0;
     function tryNext(){
@@ -40,6 +42,7 @@
     return tryNext();
   }
   function apiUrl(path){
+    if (!IS_LOCAL) return Promise.resolve(path);
     return resolveServerPort().then(port => `http://localhost:${port}${path}`);
   }
 
