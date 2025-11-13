@@ -1,0 +1,115 @@
+/* Typographie et palette */
+/* Police locale pour les noms */
+@font-face {
+  font-family: "Animal Chariot";
+  src: url("Animal Chariot.ttf") format("truetype");
+  font-display: swap;
+}
+
+:root {
+  --bg: #fcf7ff; /* fond doux légèrement rosé pour accompagner le prune */
+  --text: #2b2430; /* texte principal sombre, proche du prune */
+  --muted: #6c5d72; /* texte secondaire désaturé */
+  --primary: #7b1e7a; /* prune profond */
+  --primary-contrast: #fbebff; /* contraste clair sur boutons ghost */
+  --accent: #a24aa9; /* prune clair pour hover et accents */
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+}
+
+h1, h2, h3 { font-family: "Playfair Display", serif; color: var(--text); }
+h1 { font-size: 2.6rem; margin: 0.2rem 0 0.6rem; }
+h2 { font-size: 2rem; margin: 0 0 1rem; }
+h3 { font-size: 1.2rem; margin: 0 0 0.4rem; }
+p { margin: 0.4rem 0; }
+
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 1.2rem;
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  min-height: 64vh;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #f7eafa, #f3e2f8); /* dégradé subtil autour du prune */
+}
+.hero__overlay {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(123,30,122,0.13) 1px, transparent 1px);
+  background-size: 22px 22px;
+  opacity: 0.25;
+}
+.hero__content { position: relative; text-align: center; padding: 3rem 0; }
+.eyebrow { color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.9rem; }
+.title .names {
+  color: var(--primary);
+  font-family: "Animal Chariot", "Playfair Display", serif;
+  font-weight: 400;
+}
+
+/* Le « & » utilise la police précédente (Playfair Display) */
+.names .amp {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+}
+.subtitle { color: var(--muted); }
+
+.cta { margin-top: 1.2rem; display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
+.btn {
+  display: inline-block;
+  padding: 0.7rem 1.1rem;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+.btn--primary { background: var(--primary); color: white; }
+.btn--primary:hover { background: var(--accent); }
+.btn--ghost { background: var(--primary-contrast); color: var(--primary); border-color: var(--primary); }
+.btn--ghost:hover { background: #fff; }
+.btn--large { padding: 0.9rem 1.3rem; font-size: 1.05rem; }
+
+/* Nav */
+.nav { position: sticky; top: 0; backdrop-filter: saturate(160%) blur(8px); background: rgba(255,250,243,0.75); border-bottom: 1px solid #eadcca; z-index: 10; }
+.nav__inner { display: flex; gap: 1rem; padding: 0.6rem 0; justify-content: center; }
+.nav a { color: var(--primary); text-decoration: none; font-weight: 600; }
+.nav a:hover { text-decoration: underline; }
+
+/* Sections */
+.section { padding: 2.4rem 0; }
+.section--alt { background: #fff5ea; }
+.grid { display: grid; gap: 1.2rem; }
+.grid--two { grid-template-columns: repeat(2, minmax(0,1fr)); }
+
+.note { margin-top: 1rem; padding: 0.9rem 1rem; background: #fff; border: 1px solid #eadcca; border-radius: 12px; color: var(--muted); }
+
+.timeline { list-style: none; margin: 0; padding: 0; }
+.timeline li { display: grid; grid-template-columns: 80px 1fr; gap: 0.8rem; align-items: baseline; padding: 0.6rem 0; border-bottom: 1px dashed #eadcca; }
+.timeline .time { font-weight: 700; color: var(--primary); }
+
+.rsvp { margin-top: 1rem; text-align: center; }
+.muted { color: var(--muted); }
+.link { color: var(--primary); text-decoration: underline; }
+
+/* Footer */
+.footer { border-top: 1px solid #eadcca; background: #fff; }
+.footer__inner { padding: 1.4rem 0; text-align: center; }
+
+/* Responsive */
+@media (max-width: 720px) {
+  h1 { font-size: 2.2rem; }
+  .grid--two { grid-template-columns: 1fr; }
+  .timeline li { grid-template-columns: 70px 1fr; }
+}

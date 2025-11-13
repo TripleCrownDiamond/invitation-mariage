@@ -1,0 +1,14 @@
+node_modules/
+.vercel/
+*.log
+*.tmp
+dist/
+build/
+.DS_Store
+
+# Bases locales (ne pas versionner)
+rsvp.db
+server/rsvp.db
+
+# Secrets
+.env

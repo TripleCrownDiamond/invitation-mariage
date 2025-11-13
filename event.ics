@@ -1,0 +1,13 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Invitation Mariage//FR
+BEGIN:VEVENT
+UID:mariage-2025-06-15@example.com
+DTSTAMP:20250101T120000Z
+DTSTART:20250615T120000Z
+DTEND:20250615T180000Z
+SUMMARY:Mariage traditionnel — Prenom & Prénom
+DESCRIPTION:Cérémonie traditionnelle suivie d'un dîner et festivités.
+LOCATION:6.381111, 2.277472 (Cococodji, Bénin)
+END:VEVENT
+END:VCALENDAR
