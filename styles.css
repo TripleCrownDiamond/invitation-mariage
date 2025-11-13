@@ -100,7 +100,7 @@ p { margin: 0.4rem 0; }
   border-right: 2px solid #fff; border-bottom: 2px solid #fff;
   transform: rotate(45deg);
 }
-.hero__down:hover { background: rgba(0,0,0,0.26); transform: translateX(-50%) translateY(-2px); }
+.hero__down:hover { background: rgba(0,0,0,0.26); }
 
 /* Animation douce de la flèche */
 @keyframes heroChevronPulse {
