@@ -210,7 +210,7 @@
         const nameTextRaw = `${cleanPrenom} ${cleanNom}`.trim();
         const nameText = stripAccents(nameTextRaw);
         // En-tête: uniquement le nom (Animal Chariot, sans accents), sans préfixe
-        const phraseText = 'Vous êtes chaleureusement invitées à notre mariage traditionnel...';
+        const phraseText = 'Vous êtes chaleureusement invité(e) à notre cérémonie de noces traditionnelle...';
         const detailsTextUpper = '20 décembre 2025 · 15:00 · Maison Rodriguez, Cococodji'.toLocaleUpperCase('fr-FR');
         const maxTextWidth = width - 160;
         // Icône bague en haut, centrée et plus visible
