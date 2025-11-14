@@ -231,6 +231,7 @@ p { margin: 0.4rem 0; }
 /* Mobile: réduire légèrement la taille des noms dans le hero */
 @media (max-width: 720px) {
   .hero .title { font-size: 3.12rem; line-height: 1.08; }
+  .hero .title .names { font-size: 0.92em; }
   .names .amp { font-size: 0.85em; }
   .hero__down { margin-top: 12px; }
 }
@@ -276,7 +277,6 @@ p { margin: 0.4rem 0; }
 /* Responsive */
 @media (max-width: 720px) {
   h1 { font-size: 2.6rem; }
-.hero .title { font-size: 5.2rem; line-height: 1.1; }
   .hero__subline { font-size: 0.9rem; margin-bottom: 0.28rem; }
   /* Ajuste la hauteur du hero pour s’adapter à l’image de fond */
   .hero { min-height: 62vh; background-position: center 36%; background-size: 118% auto; }
