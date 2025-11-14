@@ -38,6 +38,7 @@
         <a href="#details">Détails</a>
         <a href="#programme">Programme</a>
         <a href="#rsvp">RSVP</a>
+        <a href="#invitation">Invitation personnalisée</a>
       </div>
     </nav>
 
@@ -84,6 +85,8 @@
         </div>
       </section>
 
+      
+
       <section id="programme" class="section section--alt reveal">
         <div class="container">
           <h2>Programme</h2>
@@ -112,54 +115,56 @@
           <h2>RSVP</h2>
           <p>Merci de confirmer votre présence avant le <strong>18 Décembre 2025</strong>.</p>
           <div class="rsvp">
-            <button id="openRsvpModal" class="btn btn--primary btn--large" type="button">Remplir le formulaire RSVP</button>
-            <p class="muted">Ou contactez-nous sur <a href="https://wa.me/22967659717" target="_blank" rel="noopener">WhatsApp</a></p>
+            <div class="card" style="max-width:860px; margin: 0 auto;">
+              <div style="padding:0.6rem 0; text-align:center;">
+                <p class="muted" style="margin-bottom:0.6rem;">Formulaire Google · Sécurisé</p>
+              </div>
+              <div style="width:100%; overflow:hidden; border-radius:10px;">
+                <iframe title="RSVP Google Form" src="https://docs.google.com/forms/d/e/1FAIpQLSfp7iYk9FvMtK9A_OiSTrsfwSxRcyQVeE77wlYwvMGuVe-h-w/viewform?embedded=true" style="display:block; width:100%; height:clamp(720px, 85vh, 1100px); border:0;" loading="lazy">Chargement…</iframe>
+              </div>
+            </div>
+            <p class="muted" style="text-align:center; margin-top:0.6rem;">Besoin d’aide ? Contactez-nous sur <a href="https://wa.me/22967659717" target="_blank" rel="noopener">WhatsApp</a></p>
           </div>
         </div>
       </section>
 
-      <!-- Modal RSVP -->
-      <div id="rsvpModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="rsvpTitle">
+       <!-- Action pour l’invitation personnalisée en bas de RSVP -->
+      <section id="invitation" class="section reveal">
+        <div class="container">
+          <h2>Obtenir mon invitation personnalisée</h2>
+          <div class="invite-download">
+            <button id="openInviteModal" class="btn btn--primary" type="button">Obtenir mon invitation personnalisée</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Modale Invitation personnalisée -->
+      <div id="inviteModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="inviteModalTitle">
         <div class="modal__overlay" data-close-modal></div>
         <div class="modal__content" role="document">
           <button class="modal__close" type="button" aria-label="Fermer" data-close-modal>✕</button>
-          <h3 id="rsvpTitle">Formulaire RSVP</h3>
-          <form id="rsvpForm" class="form">
+          <h3 id="inviteModalTitle" style="margin-top:0;">Invitation personnalisée</h3>
+          <p class="muted">Renseignez votre prénom et nom. Lorsque vous cliquez, un message de succès s’affiche et votre invitation personnalisée se télécharge automatiquement.</p>
+          <form id="inviteForm" class="form" style="max-width:640px;">
             <div class="form__row">
-              <label for="rsvpNom">Nom</label>
-              <input id="rsvpNom" name="nom" type="text" required />
-            </div>
-            <div class="form__row">
-              <label for="rsvpPrenom">Prénom</label>
-              <input id="rsvpPrenom" name="prenom" type="text" required />
+              <label for="invPrenom">Prénom</label>
+              <input id="invPrenom" type="text" placeholder="Ex: Koffi" value="Koffi" style="width:100%;" />
             </div>
             <div class="form__row">
-              <label for="rsvpContact">Contact</label>
-              <input id="rsvpContact" name="contact" type="text" placeholder="Téléphone ou email" required />
+              <label for="invNom">Nom</label>
+              <input id="invNom" type="text" placeholder="Ex: Danger" value="Danger" style="width:100%;" />
             </div>
-            <div class="form__row">
-              <span class="form__label">Par qui avez-vous été invité ?</span>
-              <div class="form__choices">
-                <label><input type="radio" name="invitePar" value="Marié" required /> Invité par le marié</label>
-                <label><input type="radio" name="invitePar" value="Mariée" required /> Invité par la mariée</label>
-              </div>
-            </div>
-            <div class="form__row">
-              <span class="form__label">Confirmez-vous votre présence ?</span>
-              <div class="form__choices">
-                <label><input type="radio" name="presence" value="Oui" required /> Je confirme ma présence</label>
-                <label><input type="radio" name="presence" value="Non" required /> Je ne peux pas venir</label>
-              </div>
-            </div>
-            <div class="form__actions">
-              <button type="submit" class="btn btn--primary">Enregistrer</button>
-              <button type="button" class="btn btn--ghost" data-close-modal>Annuler</button>
-            </div>
-            <p id="rsvpStatus" class="form__status" aria-live="polite"></p>
+            <p id="inviteStatus" class="form__status" aria-live="polite"></p>
           </form>
+          <!-- Aperçu de l'invitation générée -->
+          <div id="invitePreview" class="invite-preview" style="display:none; text-align:center; margin-top:0.6rem;">
+            <img id="invitePreviewImg" alt="Aperçu de votre invitation" style="max-width:100%; height:auto; border-radius:12px; box-shadow:0 12px 28px rgba(0,0,0,0.18); border:1px solid #eadcca;" />
+          </div>
+          <div id="downloadArea" style="display:none; text-align:center; margin-top:0.6rem;">
+            <button id="downloadInviteBtn" class="btn btn--primary" type="button">Télécharger mon invitation</button>
+          </div>
         </div>
       </div>
-
       
       <script>
         // Animation d’apparition au scroll pour les sections
@@ -204,11 +209,7 @@
   <script src="player.js?v=20251113"></script>
   <script src="rsvp.js?v=20251113"></script>
   <script src="calendar.js?v=20251113"></script>
-  <script>
-    // Enregistre une visite côté serveur (même origine)
-    (function(){
-      try { fetch('/api/visit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ path: location.pathname, ua: navigator.userAgent }) }); } catch(e) {}
-    })();
-  </script>
+  <script src="confirm.js?v=20251113"></script>
+  
   </html>
   </html>

@@ -250,7 +250,7 @@
     btn.type = 'button';
     btn.className = 'btn btn--download btn--xl';
     btn.setAttribute('aria-label', 'Télécharger votre invitation personnalisée');
-    btn.innerHTML = '<span class="icon icon--download" aria-hidden="true"></span> Télécharger votre invitation';
+    btn.innerHTML = '<span class="icon icon--download" aria-hidden="true"></span> Télécharger mon invitation';
     btn.addEventListener('click', () => {
       generateInvitationImage(data).then(({ url, filename }) => {
         const a = document.createElement('a');
@@ -351,13 +351,13 @@
         const maxTextWidth = width - 160; // marge latérale pour éviter le débordement
         const titleSize = fitFontSize({
           text: titleText,
-          fontFamily: '"Playfair Display", serif',
+          fontFamily: '"Animal Chariot", "Playfair Display", serif',
           weight: '700',
           maxSize: 72,
           minSize: 40,
           maxWidth: maxTextWidth
         });
-        ctx.font = `700 ${titleSize}px "Playfair Display", serif`;
+        ctx.font = `700 ${titleSize}px "Animal Chariot", "Playfair Display", serif`;
         const titleY = Math.floor(height * 0.42);
         ctx.fillText(titleText, width/2, titleY);
         // Ligne "Merci de célébrer..." fixée à 18px
@@ -373,12 +373,32 @@
         ctx.font = `700 ${confirmSize}px "Playfair Display", serif`;
         const confirmY = titleY + confirmSize + 20;
         ctx.fillText(confirmText, width/2, confirmY);
-        // "Merci de célébrer avec nous" tout en bas en 30px, juste au-dessus du ring
-        ctx.font = `400 30px Inter, sans-serif`;
-        const merciY = height - 130; // proche du bas, au-dessus de l’icône bague
-        ctx.fillText('Merci de célébrer avec nous', width/2, merciY);
-        // Icône bague en bas centré
-        drawRingIcon(ctx, width/2, height - 90, 72);
+        // (Texte de remerciement retiré)
+        // Icône bague en haut centré (réduite de 50%)
+        const ringSize = 18;
+        const ringCy = 90;
+        drawRingIcon(ctx, width/2, ringCy, ringSize);
+        // Signature centrée en bas, avec « & » en Playfair Display et noms en Animal Chariot
+        ctx.save();
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'alphabetic';
+        ctx.fillStyle = '#ffffff';
+        const signatureSize = Math.round(36 * 1.3); // +30%
+        const normalFont = `400 ${signatureSize}px "Animal Chariot", "Playfair Display", serif`;
+        const ampFont = `400 ${signatureSize}px "Playfair Display", serif`;
+        const parts = ['Murielle ', '&', ' Ricardio'];
+        // Mesure des largeurs
+        ctx.font = normalFont; const w0 = ctx.measureText(parts[0]).width;
+        ctx.font = ampFont;   const w1 = ctx.measureText(parts[1]).width;
+        ctx.font = normalFont; const w2 = ctx.measureText(parts[2]).width;
+        const totalW = w0 + w1 + w2;
+        let x = (width / 2) - (totalW / 2);
+        const y = height - 120;
+        // Dessin des segments
+        ctx.font = normalFont; ctx.fillText(parts[0], x, y); x += w0;
+        ctx.font = ampFont;   ctx.fillText(parts[1], x, y); x += w1;
+        ctx.font = normalFont; ctx.fillText(parts[2], x, y);
+        ctx.restore();
         // Export immédiat
         canvas.toBlob((blob) => {
           if (!blob) return reject(new Error('toBlob failed'));

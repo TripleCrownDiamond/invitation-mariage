@@ -2,7 +2,8 @@
 /* Police locale pour les noms */
 @font-face {
   font-family: "Animal Chariot";
-  src: url("Animal Chariot.ttf") format("truetype");
+  /* Cache-busting pour forcer le rechargement de la police */
+  src: url("Animal Chariot.ttf?v=3") format("truetype");
   font-display: swap;
 }
 
@@ -71,7 +72,7 @@ p { margin: 0.4rem 0; }
 .hero__note { font-size: 0.9rem; margin-top: 0.3rem; }
 .eyebrow { color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.9rem; }
 .title { margin: 0.2rem 0 0.4rem; }
-.hero .title { font-size: 3.6rem; line-height: 1.15; }
+.hero .title { font-size: 4.68rem; line-height: 1.15; }
 .title .names {
   color: var(--primary);
   font-family: "Animal Chariot", "Playfair Display", serif;
@@ -212,6 +213,9 @@ p { margin: 0.4rem 0; }
 .btn--download:hover { background: var(--accent); box-shadow: 0 12px 28px rgba(123,30,122,0.25); }
 .invite-download .icon--download { background-color: #fff; }
 
+/* Titre de la section Invitation centré */
+#invitation h2 { text-align: center; }
+
 /* Variante XL pour présence visuelle renforcée */
 .btn--xl { padding: 0.55rem 1rem; font-size: 1rem; border-radius: 999px; }
 .invite-download .btn { min-width: 220px; }
@@ -226,7 +230,7 @@ p { margin: 0.4rem 0; }
 
 /* Mobile: réduire légèrement la taille des noms dans le hero */
 @media (max-width: 720px) {
-  .hero .title { font-size: 2.4rem; line-height: 1.08; }
+  .hero .title { font-size: 3.12rem; line-height: 1.08; }
   .names .amp { font-size: 0.85em; }
   .hero__down { margin-top: 12px; }
 }
@@ -237,6 +241,10 @@ p { margin: 0.4rem 0; }
 .modal__overlay { position: absolute; inset: 0; background: rgba(43,36,48,0.55); backdrop-filter: blur(4px); }
 .modal__content { position: relative; width: min(680px, 92vw); max-height: 86vh; overflow: auto; background: #fff; border-radius: 14px; box-shadow: 0 18px 46px rgba(0,0,0,0.18); padding: 1.2rem; border: 1px solid #eadcca; }
 .modal__close { position: absolute; top: 10px; right: 10px; background: transparent; border: 0; font-size: 1.2rem; cursor: pointer; color: var(--muted); }
+
+/* Aperçu d'invitation dans la modale */
+.invite-preview { margin-top: 0.6rem; text-align: center; }
+.invite-preview img { max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 12px 28px rgba(0,0,0,0.18); border: 1px solid #eadcca; }
 
 /* Form */
 .form { display: grid; gap: 0.8rem; }
@@ -268,7 +276,7 @@ p { margin: 0.4rem 0; }
 /* Responsive */
 @media (max-width: 720px) {
   h1 { font-size: 2.6rem; }
-  .hero .title { font-size: 4rem; line-height: 1.1; }
+.hero .title { font-size: 5.2rem; line-height: 1.1; }
   .hero__subline { font-size: 0.9rem; margin-bottom: 0.28rem; }
   /* Ajuste la hauteur du hero pour s’adapter à l’image de fond */
   .hero { min-height: 62vh; background-position: center 36%; background-size: 118% auto; }
